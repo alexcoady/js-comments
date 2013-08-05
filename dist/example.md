@@ -4,19 +4,19 @@
 *	Param: `undefined`
 *	Return: `undefined`
 
-##undefined
+##render
 *	Author: undefined
 *	Date: undefined
 *	Param: `null`
 *	Return: `View: This view`
 
-##undefined
+##toggleActive
 *	Author: undefined
 *	Date: undefined
 *	Param: `null`
 *	Return: `View: This view`
 
-##undefined
+##makeActive
 *	Author: undefined
 *	Date: undefined
 *	Param: `null`

@@ -33,7 +33,7 @@ define([
         },
 
         /*
-        *   Function render
+        *   @title render
         *   ----------------------------------------------------------
         *   Renders a page to this view using it's template
         *   ----------------------------------------------------------
@@ -49,7 +49,7 @@ define([
         },
 
         /*
-        *   Function toggleActive
+        *   @title toggleActive
         *   ----------------------------------------------------------
         *   Sets the correct active state
         *   ----------------------------------------------------------
@@ -72,7 +72,7 @@ define([
         },
 
         /*
-        *   Function makeActive
+        *   @title makeActive
         *   ----------------------------------------------------------
         *   Activates this view's model
         *   ----------------------------------------------------------
