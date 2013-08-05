@@ -61,7 +61,12 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 
 		for (line_i; line_i < line_count; line_i += 1) {
 
-			line = lines[line_i];
+			line = lines[line_i].trim();
+
+			if ( line.charAt(0) === "*" ) {
+
+				line = line.substring(1).trim();
+			}
 
 			// Look for keywords in line
 			kw_index.title = line.indexOf("@title");
