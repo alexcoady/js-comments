@@ -67,10 +67,10 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 		getMarkdown: function getMarkdown () {
 
 			return "#" + this.get("title") + "\n" +
-			"*Author: " + this.get("author") + "\n" +
-			"*Date: " + this.get("date") + "\n" +
-			"*Param: " + this.get("param") + "\n" +
-			"*Return: " + this.get("return_prop") + "\n\n\n";
+			"*\tAuthor: " + this.get("author") + "\n" +
+			"*\tDate: " + this.get("date") + "\n" +
+			"*\tParam: " + this.get("param") + "\n" +
+			"*\tReturn: " + this.get("return_prop") + "\n\n\n";
 		}
 	};
 
