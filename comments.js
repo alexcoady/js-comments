@@ -7,6 +7,7 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 	}
 
 	var Comment = function (title, author, date, param, return_prop) {
+		
 		this.title = title;
 		this.author = author;
 		this.date = date;
@@ -53,15 +54,6 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 		logOut: function printOutFn () {
 
 			console.log(this);
-		},
-
-		printAsMarkDown: function printAsMarkDownFn () {
-
-			console.log("#", this.get("title"));
-			console.log("##Author:", this.get("author"));
-			console.log("##Date:", this.get("date"));
-			console.log("##Param:", this.get("param"));
-			console.log("##Return:", this.get("return_prop"));
 		},
 
 		getMarkdown: function getMarkdown () {
@@ -162,7 +154,6 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 			} else if ( kw_index.return_prop !== -1 ) {
 
 				comment.set("return_prop", line.substring(kw_index.return_prop + 8));
-
 			}
 		}
 
