@@ -1,28 +1,24 @@
-#Example JS file
+##Example JS file
 *	Author: Alex Coady
 *	Date: 05/08/2013
-*	Param: undefined
-*	Return: undefined
+*	Param: `undefined`
+*	Return: `undefined`
 
-
-#undefined
+##undefined
 *	Author: undefined
 *	Date: undefined
-*	Param: null
-*	Return: View: This view
+*	Param: `null`
+*	Return: `View: This view`
 
-
-#undefined
+##undefined
 *	Author: undefined
 *	Date: undefined
-*	Param: null
-*	Return: View: This view
+*	Param: `null`
+*	Return: `View: This view`
 
-
-#undefined
+##undefined
 *	Author: undefined
 *	Date: undefined
-*	Param: null
-*	Return: Void
-
+*	Param: `null`
+*	Return: `Void`
 

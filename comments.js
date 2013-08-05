@@ -66,11 +66,11 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 
 		getMarkdown: function getMarkdown () {
 
-			return "#" + this.get("title") + "\n" +
+			return "##" + this.get("title") + "\n" +
 			"*\tAuthor: " + this.get("author") + "\n" +
 			"*\tDate: " + this.get("date") + "\n" +
-			"*\tParam: " + this.get("param") + "\n" +
-			"*\tReturn: " + this.get("return_prop") + "\n\n\n";
+			"*\tParam: `" + this.get("param") + "`\n" +
+			"*\tReturn: `" + this.get("return_prop") + "`\n\n";
 		}
 	};
 
@@ -143,7 +143,6 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 			kw_index.param = line.indexOf("@param");
 			kw_index.return_prop = line.indexOf("@return");
 
-
 			if ( kw_index.title !== -1 ) {
 
 				comment.set("title", line.substring(kw_index.title + 7));
@@ -164,11 +163,12 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 
 				comment.set("return_prop", line.substring(kw_index.return_prop + 8));
 
-			} else if (comment.isValid()) {
-
-				comments.push(comment);
-
 			}
+		}
+
+		if (comment.isValid()) {
+
+			comments.push(comment);
 		}
 	}
 
