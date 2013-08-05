@@ -1,7 +1,7 @@
 #JS Comments
 ##Node.js plugin by Alex Coady
 
-A Node.js plugin to rip comments from your JavaScript code and create a Java-like API page.
+A Node.js plugin to rip comments from your JavaScript code and create a Java-like API page ( [Like this](https://github.com/alexcoady/js-comments/blob/master/dist/example.m "Have a look")).
 
 	node index.js
 
