@@ -34,7 +34,11 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 
 		isValid: function isValidFn () {
 
-			if (this.title || this.author || this.date || this.param || this.return_prop) {
+			if (this.title || 
+				this.author || 
+				this.date || 
+				this.param || 
+				this.return_prop) {
 
 				return true;
 			}
@@ -46,11 +50,29 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 			return this.title;
 		},
 
-		printOut: function printOutFn () {
+		logOut: function printOutFn () {
 
 			console.log(this);
+		},
+
+		printAsMarkDown: function printAsMarkDownFn () {
+
+			console.log("#", this.get("title"));
+			console.log("##Author:", this.get("author"));
+			console.log("##Date:", this.get("date"));
+			console.log("##Param:", this.get("param"));
+			console.log("##Return:", this.get("return_prop"));
+		},
+
+		getMarkdown: function getMarkdown () {
+
+			return "#" + this.get("title") + "\n" +
+			"##Author: " + this.get("author") + "\n" +
+			"##Date: " + this.get("date") + "\n" +
+			"##Param: " + this.get("param") + "\n" +
+			"##Return: " + this.get("return_prop") + "\n\n\n";
 		}
-	}
+	};
 
 	var string = fileContents,
 		char_count = fileContents.length,
@@ -96,8 +118,6 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 		kw_index = {},
 		comments = [];
 
-	console.log("Found", comments_count, "comments");
-
 	for (comments_i; comments_i < comments_count; comments_i += 1) {
 
 		comment_string = comments_string_array[comments_i];
@@ -118,46 +138,62 @@ fs.readFile("src/example.js", "utf8", function (err, fileContents) {
 			}
 
 			kw_index.title = line.indexOf("@title");
+			kw_index.author = line.indexOf("@author");
+			kw_index.date = line.indexOf("@date");
+			kw_index.param = line.indexOf("@param");
+			kw_index.return_prop = line.indexOf("@return");
+
 
 			if ( kw_index.title !== -1 ) {
 
-				comment.set("title", line);
-			}
+				comment.set("title", line.substring(kw_index.title + 7));
 
-			kw_index.author = line.indexOf("@author");
+			} else if ( kw_index.author !== -1 ) {
 
-			if ( kw_index.author !== -1 ) {
+				comment.set("author", line.substring(kw_index.author + 8));
+			
+			} else if ( kw_index.date !== -1 ) {
 
-				comment.set("author", line);
-			}
+				comment.set("date", line.substring(kw_index.date + 6));
+			
+			} else if ( kw_index.param !== -1 ) {
 
-			kw_index.date = line.indexOf("@date");
+				comment.set("param", line.substring(kw_index.param + 7));
 
-			if ( kw_index.date !== -1 ) {
+			} else if ( kw_index.return_prop !== -1 ) {
 
-				comment.set("date", line);
-			}
+				comment.set("return_prop", line.substring(kw_index.return_prop + 8));
 
-			kw_index.param = line.indexOf("@param");
+			} else if (comment.isValid()) {
 
-			if ( kw_index.param !== -1 ) {
+				comments.push(comment);
 
-				comment.set("param", line);
-			}
-
-			kw_index.return_prop = line.indexOf("@return");
-
-			if ( kw_index.return_prop !== -1 ) {
-
-				comment.set("return_prop", line);
-			}
-
-			if (comment.isValid()) {
-
-				comment.printOut();
 			}
 		}
 	}
 
-	
+	if (comments.length > 0) {
+
+		console.log(comments.length);
+
+		var markdown = "";
+
+		for (var i = 0; i < comments.length; i +=1) {
+
+			markdown += comments[i].getMarkdown();
+		}
+
+		fs.writeFile("dist/example.md", markdown, function (err, data) {
+
+			if (err) {
+
+				console.log("Error writing file:", err);
+				return;
+			} else {
+
+				console.log("Saved to file!");
+			}
+		});
+	}
+
 });
